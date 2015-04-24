@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.data.manipulators;
 
+import org.spongepowered.api.util.weighted.WeightedCollection;
+
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.util.weighted.WeightedRandomEntity;
+import org.spongepowered.api.util.weighted.WeightedEntity;
 
 import java.util.Collection;
 
@@ -190,59 +192,18 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData> {
     void setNextEntityToSpawn(EntityType type, @Nullable DataContainer additionalProperties);
 
     /**
-     * Sets the next {@link WeightedRandomEntity} to be spawned.
+     * Sets the next {@link WeightedEntity} to be spawned.
      *
      * @param entity The random entity entry
      */
-    void setNextEntityToSpawn(WeightedRandomEntity entity);
+    void setNextEntityToSpawn(WeightedEntity entity);
 
     /**
-     * Gets the collection of {@link WeightedRandomEntity} from which the type
-     * of each batch of spawned entities will be selected from.
+     * Gets a mutable collection of {@link WeightedEntity} from which the
+     * type of each batch of spawned entities will be selected from.
      *
      * @return The possible entities
      */
-    Collection<WeightedRandomEntity> getPossibleEntitiesToSpawn();
-
-    /**
-     * Creates a {@link WeightedRandomEntity} with the given properties and
-     * returns the {@link WeightedRandomEntity} if validation passed.
-     *
-     * <p>If there is invalid data, either the entity type, the weight, or
-     * the additional properties are not valid to apply to the entity, the
-     * {@link WeightedRandomEntity} is not created.</p>
-     *
-     * @param entityType The entity type
-     * @param weight The weight of the priority to spawn the entity
-     * @param additionalProperties Any additional properties customizing the
-     *     entity
-     * @return The weighted entity if it was created
-     */
-    Optional<WeightedRandomEntity> addWeightedEntity(EntityType entityType, int weight, Collection<DataManipulator<?>> additionalProperties);
-
-    /**
-     * Removes the given {@link WeightedRandomEntity} from the possible
-     * entities to spawn by the mob spawner.
-     *
-     * @param weightedEntity The weighted entity to remove
-     */
-    void removeWeightedEntity(WeightedRandomEntity weightedEntity);
-
-    /**
-     * Defines a number of {@link WeightedRandomEntity}s from which the type of
-     * each batch will be randomly selected based on the weighting value.
-     *
-     * @param entities The possible entities
-     */
-    void setPossibleEntitiesToSpawn(WeightedRandomEntity... entities);
-
-    /**
-     * Defines a number of {@link WeightedRandomEntity}s from which the type of
-     * each batch will be randomly selected based on the weighting value.
-     *
-     * @param entities The possible entities
-     */
-    void setPossibleEntitiesToSpawn(Collection<WeightedRandomEntity> entities);
-
+    WeightedCollection<WeightedEntity> getPossibleEntitiesToSpawn();
 
 }
