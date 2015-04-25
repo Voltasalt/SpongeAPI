@@ -24,15 +24,11 @@
  */
 package org.spongepowered.api.data.manipulators;
 
-import org.spongepowered.api.util.weighted.WeightedCollection;
-
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.util.weighted.WeightedCollection;
 import org.spongepowered.api.util.weighted.WeightedEntity;
-
-import java.util.Collection;
 
 import javax.annotation.Nullable;
 
