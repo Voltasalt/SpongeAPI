@@ -1399,6 +1399,28 @@ public final class SpongeEventFactory {
     }
 
     /**
+     * Creates a new {@link PlayerRespawnEvent}.
+     *
+     * @param game The game instance for this {@link GameEvent}
+     * @param player The player involved in this event
+     * @param bedSpawn Whether this respawn is to a bed
+     * @param respawnLocation The location the player will spawn in
+     * @return A new instance of the event
+     */
+    public static PlayerRespawnEvent createPlayerRespawn(Game game, Player player, boolean bedSpawn, Location respawnLocation) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("entity", player);
+        values.put("respawnLocation", respawnLocation);
+        values.put("bedSpawn", bedSpawn);
+        values.put("player", player);
+        values.put("user", player);
+        values.put("human", player);
+        values.put("living", player);
+        return createEvent(PlayerRespawnEvent.class, values);
+    }
+
+    /**
      * Creates a new {@link PlayerUpdateEvent}.
      *
      * @param game The game instance for this {@link GameEvent}
